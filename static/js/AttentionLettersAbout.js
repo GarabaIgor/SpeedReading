@@ -12,7 +12,7 @@ jQuery(document).ready(function() {
   {
     chosen_letters = $("#list option:selected").val();
     console.log(chosen_letters.length);
-  $.getJSON("http://127.0.0.1:8000/attention_letters/",{"chosen_letters":chosen_letters},function(json){
+  $.getJSON("http://127.0.0.1:8000/attention_letters_json/",{"chosen_letters":chosen_letters},function(json){
   		   $("head").append("<link href=\"/static/AttentionLettersTable.css\" rel=\"stylesheet\">");
   		   $("head").append("<script type=\"text/javascript\" src=\"/static/AttentionLettersTable.js\"></script>");
   		 

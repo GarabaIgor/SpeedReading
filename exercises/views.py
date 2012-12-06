@@ -51,7 +51,7 @@ def storm_about(request):
 def storm(request):
 	return render_to_response('Storm.html',context_instance=RequestContext(request))
 
-def attention_letters_about(request):
+def attention_letters(request):
 	letters = ['К','Е','Х','Н','В','А','С','И']
 	letter1 = random.choice(letters)
 	letter2 = random.choice(letters)
@@ -59,7 +59,7 @@ def attention_letters_about(request):
 	letter3 = random.choice(letters)
 	return render_to_response('AttentionLettersAbout.html',{'letter1':letter1,'letter2':letter2,'letter3':letter3},context_instance=RequestContext(request))
 
-def attention_letters(request):
+def attention_letters_json(request):
 	page_data = {}
 	letters_to_search = " ";
 	letters_to_find = []
