@@ -12,9 +12,27 @@
 	</h3></div>
 
 
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Буквы</h3>
+  </div>
+  <div class="modal-body">
+  	<p>Найдено букв: <span id="resultTime"><strong>{minResult}:{secResult}</span></strong></p>
+  	<div id ="resultInf">
+    {% if letters_to_find|length == 1 %}
+    	<p>Букв {{letters_to_find.0}} :  {letter1_count} из {letter1_count_orig}</p>
+    {% endif %}
+    {% if letters_to_find|length == 2 %}
+    	<p>Букв {{letters_to_find.0}} :  {letter1_count} из {letter1_count_orig}</p>
+    	<p>Букв {{letters_to_find.1}} :  {letter2_count} из {letter2_count_orig}</p>
+    {% endif %}
+    	<p>Ошибок: {mistake_count}</p>
+    	
+    </div>
+  </div>
 
-
-
+</div>
 	
 
 <table id="letters_table">

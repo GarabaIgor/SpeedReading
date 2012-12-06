@@ -2,10 +2,11 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse,Http404
 from django.template import RequestContext
-from django.utils import simplejson
+from django.utils import simplejson as sj
 import random
 from django.views.decorators.csrf import csrf_protect
 from django.template.loader import render_to_string
+
 
 def base_exercise(request):
 	return render_to_response('base.html',context_instance=RequestContext(request))
@@ -59,6 +60,7 @@ def attention_letters_about(request):
 	return render_to_response('AttentionLettersAbout.html',{'letter1':letter1,'letter2':letter2,'letter3':letter3},context_instance=RequestContext(request))
 
 def attention_letters(request):
+	page_data = {}
 	letters_to_search = " ";
 	letters_to_find = []
 	letters = [u'К',u'Е',u'Х',u'Н',u'В',u'А',u'С',u'И']
@@ -66,30 +68,35 @@ def attention_letters(request):
 	h = 10
 	letters_array = [random.choice(letters) for x in range(w) for y in range(h)]	
 	try:
-		if request.method == 'POST':
+		if request.method == 'GET':
 			# print request.POST
-			letters_to_find = request.POST['chosen_letters']
+			letters_to_find = request.GET['chosen_letters']
 			if len(letters_to_find) == 1:
 				
 				letter1 = letters_to_find[0]
-				
+				# print letters_array,letter1,letters_array.count(letter1)
 				letter1_count = letters_array.count(letter1)
+				html_content = render_to_string('AttentionLetters.html',{'letters_array':letters_array,'width':w,'letters_to_find':letters_to_find})
+				html_content =  " ".join(html_content.split())
+				# print html_content
+				page_data = {'letter1_count':letter1_count,'html_content':html_content}
 				# print letter1_count
 			if len(letters_to_find) == 2:
-				letter2 = letters_to_find[0]
-				letter3 = letters_to_find[1]
+				letter1 = letters_to_find[0]
+				letter2 = letters_to_find[1]
+				letter1_count = letters_array.count(letter1)
 				letter2_count = letters_array.count(letter2)
-				letter3_count = letters_array.count(letter3)
+				html_content =  render_to_string('AttentionLetters.html',{'letters_array':letters_array,'width':w,'letters_to_find':letters_to_find})
+				html_content =  " ".join(html_content.split())
+				page_data = {'letter1_count':letter1_count,'letter2_count':letter2_count,'html_content':html_content}
 				# print letter2_count,letter3_count
 			
 
 		
-	
-		s =  render_to_string('AttentionLetters.html',{'letters_array':letters_array,'width':w,'letters_to_find':letters_to_find})
-		# print s
+			# print sj.dumps(json)
 	except Exception,e:
 		print e
-	return HttpResponse(s)
+	return HttpResponse(sj.dumps(page_data), mimetype="application/json")
 
 
 
