@@ -1,0 +1,69 @@
+{% extends 'base_exercise.html' %}
+{% block additionalLinks %}
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}SchulteTable.css" />
+<script src="{{STATIC_URL}}SchulteTable.js"></script>
+<script src="{{STATIC_URL}}csrf.js"></script>
+{% endblock additionalLinks %}
+{# {% endblock additionalLinks %} #}
+
+	
+         
+           <!-- <div class="page-header">
+            <h1>Таблица Шульте</h1>
+          </div> -->
+          
+ {% block exercise %}
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Таблица Шульте</h3>
+  </div>
+  <div class="modal-body">
+  	<p>Время выполнения упражнения: <span id="resultTime"><strong>{minResult}:{secResult}</span></strong></p>
+    
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Завершить упражнение</button>
+    <a href="{%url SpeedReading.exercises.views.schulte_table %}" class="btn btn-primary">Начать заново</a>
+  </div>
+</div>
+
+ <div class="top_left_corner">
+ <a href="{%url SpeedReading.exercises.views.schulte_table %}" class="btn btn-info"><i class="icon-refresh" ></i> Начать заново</a>
+<!-- <a href="#" class="special_href">Начать заново</a> -->
+<p class="timer"><span id="min">0</span>:<span id="sec">0</span></p>
+</div>
+<div class="container">
+ 	
+
+ 
+<table>
+	{% for val in table %}
+
+	{% if forloop.first %}
+			<tr><td>{{val}}</td>
+	{%else%} 
+	{% if forloop.last%}
+		<td>{{val}}</td></tr>
+	{%else%}
+	{% if forloop.counter|divisibleby:"5"%}
+	<td>{{val}}</td></tr><tr>
+	{% else %}
+	<td>{{val}}</td>
+		
+	{% endif %}
+	{% endif %} 
+	{% endif %} 
+	
+	
+	
+	
+	
+		
+	{% endfor %}
+</table>	
+
+</div>
+       {% endblock exercise %}   
+

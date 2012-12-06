@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block additionalLinks %}
+
+{% endblock additionalLinks %}
+
+ 
+{% block exercise_name %}
+
+{% endblock exercise_name %}  
+Чтение методом штурма   
+{% block exercise_rules %}
+Правила выполнения упражнения чтения вертикальным движением глаз
+Вы можете выбрать наши тексты
+<select>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+Либо загрузить свой
+
+<p align="right">
+          <a  class="btn  btn-primary" href="{%url SpeedReading.exercises.views.storm %}">Начать упражнение »</a>
+          </p>
+{% endblock exercise_rules %}   
+

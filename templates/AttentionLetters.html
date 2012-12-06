@@ -1,0 +1,51 @@
+
+	<div class="">
+	{% if letters_to_find|length == 1 %}
+		<h3>Буква для поиска:
+		{% else %}
+		<h3>Буквы для поиска:
+	{% endif %}
+
+{% for val in letters_to_find %}
+		{{val}}  
+	{% endfor %}
+	</h3></div>
+
+
+
+
+
+	
+
+<table id="letters_table">
+	{% for val in letters_array %}
+
+	{% if forloop.first %}
+			<tr><td>{{val}}</td>
+	{%else%} 
+	{% if forloop.last%}
+		<td>{{val}}</td></tr>
+	{%else%}
+	{% if forloop.counter|divisibleby:width%}
+	<td>{{val}}</td></tr><tr>
+	{% else %}
+	<td>{{val}}</td>
+		
+	{% endif %}
+	{% endif %} 
+	{% endif %} 
+	
+	
+	
+	
+	
+		
+	{% endfor %}
+</table>	
+
+<div class="check_table">
+ <a id="check_table_b" class="btn btn-info"><i class="icon-ok" ></i> Проверить</a>
+<!-- <a href="#" class="special_href">Начать заново</a> -->
+
+</div>
+

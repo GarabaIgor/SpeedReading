@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block exercise_about_zone %}
+  
+
+<div class="container">
+
+    
+    <div class="row">
+      {% block exercise_items %}
+        
+      
+      <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav affix-top">
+          <li class="active"><a href="#download-bootstrap"><i class="icon-chevron-right"></i> Упражнение 1</a></li>
+          <li class=""><a href="#file-structure"><i class="icon-chevron-right"></i> Упражнение 2</a></li>
+          <li class=""><a href="#contents"><i class="icon-chevron-right"></i> Упражнение 3</a></li>
+          <li class=""><a href="#html-template"><i class="icon-chevron-right"></i> Упражнение 4</a></li>
+          <li class=""><a href="#examples"><i class="icon-chevron-right"></i> Упражнение 5</a></li>
+          <li class=""><a href="#what-next"><i class="icon-chevron-right"></i> Упражнение 6</a></li>
+        </ul>
+      </div>
+
+      {% endblock exercise_items %}
+      {% block exercise_definition %}
+        <div class="span9">
+ 
+        <section id="exercise_definition">
+          
+          <div class="page-header">
+            
+            <h1>
+              {% block exercise_name %}
+              Название упражнения
+              {% endblock exercise_name %}
+            </h1>
+          </div>
+           <div class="page-content">
+            {% block exercise_rules %}
+             Здесь будут правила выполнения этого упражнения 
+            {% endblock exercise_rules %}
+          </div>
+         
+        </section>
+        
+        </div> 
+      {% endblock exercise_definition %}
+      </div>
+  </div>
+  {% endblock exercise_about_zone %}

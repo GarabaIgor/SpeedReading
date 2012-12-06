@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block additionalLinks %}
+
+{% endblock additionalLinks %}
+
+ 
+{% block exercise_name %}
+Зеленая точка   
+{% endblock exercise_name %}  
+    
+{% block exercise_rules %}
+<p><strong>Правила выполнения упражнения:</strong></p>
+           <ul>
+              <li>созерцаем зелёную точку в течение 10 минут</li>
+              <li>посторонние мысли отогнать
+</li>
+              <li>концентрируем внимание только на зелёной точке</li>
+              <li>все мысли, сознание должны быть связаны только с зелёной точкой</li>
+              <li>спокойное ровное освещение</li>
+              <li>ноги свободно касаются пола, руки на столе, всё тело расслаблено, дыхание ровное, спокойное</li>
+              <li>текст во время созерцания зелёной точки <strong>НИКОГДА</strong> не читать!</li>
+            </ul>
+
+
+
+<p align="right">
+          <a  class="btn  btn-primary" href="{%url SpeedReading.exercises.views.green_point %}">Начать упражнение »</a>
+          </p>
+{% endblock exercise_rules %}   
+

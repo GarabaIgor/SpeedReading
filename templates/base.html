@@ -1,0 +1,224 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Скорочтение</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="{{STATIC_URL}}bootstrap.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}base.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}bootstrap-responsive.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}docs.css" rel="stylesheet">
+    <script src="{{STATIC_URL}}jquery-1.8.2.js"></script>
+    <script src="{{STATIC_URL}}bootstrap.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}csrf.js"></script>
+    {% block additionalLinks %}
+      
+    {% endblock additionalLinks %}
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="{{STATIC_URL}}favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{STATIC_URL}}apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{STATIC_URL}}apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{STATIC_URL}}apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{{STATIC_URL}}apple-touch-icon-57-precomposed.png">
+
+    
+  </head><style type="text/css"></style>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+
+    <!-- Navbar
+    ================================================== -->
+    {% block navbar %}
+      
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          
+          <div class="nav-collapse ">
+            <ul class="nav">
+              <li class="">
+                <a href="./index.html">Home</a>
+              </li>
+              <li class="dropdown">
+
+                <a href="#drop"
+                class="dropdown-toggle" data-toggle="dropdown" >Расширение поля зрения <b class="caret"></b></a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="{%url SpeedReading.exercises.views.schulte_table_about %}">Таблицы Шульте</a></li>
+                    <!-- <li class="divider"></li> -->
+                    <li><a href="{%url SpeedReading.exercises.views.green_point_about %}">Зеленая точка</a></li>
+
+                    
+                </ul>
+
+              </li>
+              <li class="dropdown">
+
+                <a href="#drop"
+                class="dropdown-toggle" data-toggle="dropdown" >Чтение<b class="caret"></b></a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="{%url SpeedReading.exercises.views.vertical_about %}">Вертикальное движение глаз</a></li>
+                    <!-- <li class="divider"></li> -->
+                    <li><a href="{%url SpeedReading.exercises.views.storm_about %}">Штурм</a></li>
+
+                    
+                </ul>
+
+              </li>           
+                <li class="dropdown">
+
+                <a href="#drop"
+                class="dropdown-toggle" data-toggle="dropdown" >Алгоритмы чтения <b class="caret"></b></a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="{%url SpeedReading.exercises.views.schulte_table_about %}">Интегральный</a></li>
+                    <!-- <li class="divider"></li> -->
+                    <li><a href="{%url SpeedReading.exercises.views.green_point_about %}">Дифференциальный</a></li>
+
+                    
+                </ul>
+
+              </li>
+              <li class="dropdown">
+
+                <a href="#drop"
+                class="dropdown-toggle" data-toggle="dropdown" >Память <b class="caret"></b></a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="{%url SpeedReading.exercises.views.schulte_table_about %}">Оперативная память</a></li>
+                    <!-- <li class="divider"></li> -->
+                    <li><a href="{%url SpeedReading.exercises.views.green_point_about %}">Упражнения на память</a></li>
+
+                    
+                </ul>
+
+              </li>
+              <li class="dropdown">
+
+                <a href="#drop"
+                class="dropdown-toggle" data-toggle="dropdown" >Внимание <b class="caret"></b></a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="{%url SpeedReading.exercises.views.attention_letters_about %}">Буквы</a></li>
+                    <!-- <li class="divider"></li> -->
+                    <li><a href="{%url SpeedReading.exercises.views.green_point_about %}">Внимание2</a></li>
+
+                    
+                </ul>
+
+              </li>
+              <li class="">
+                <a href="./customize.html">Customize</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock navbar %}
+<!-- Subhead
+================================================== -->
+
+
+{% block exercise_about_zone %}
+  
+
+  <div class="container">
+
+    <!-- Docs nav
+    ================================================== -->
+    <div class="row">
+      {%  comment %}
+        
+      
+      {% block exercise_items %}
+        
+      
+      <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav affix-top">
+          <li class="active"><a href="#download-bootstrap"><i class="icon-chevron-right"></i> Упражнение 1</a></li>
+          <li class=""><a href="#file-structure"><i class="icon-chevron-right"></i> Упражнение 2</a></li>
+          <li class=""><a href="#contents"><i class="icon-chevron-right"></i> Упражнение 3</a></li>
+          <li class=""><a href="#html-template"><i class="icon-chevron-right"></i> Упражнение 4</a></li>
+          <li class=""><a href="#examples"><i class="icon-chevron-right"></i> Упражнение 5</a></li>
+          <li class=""><a href="#what-next"><i class="icon-chevron-right"></i> Упражнение 6</a></li>
+        </ul>
+      </div>
+
+      {% endblock exercise_items %}
+      {%  endcomment %}
+      {% block exercise_definition %}
+        <div class="span9">
+ 
+        <section id="exercise_zone">
+          
+          <div class="page-header">
+            
+            <h1>
+              {% block exercise_name %}
+              Название упражнения
+              {% endblock exercise_name %}
+            </h1>
+          </div>
+           <div class="page-content">
+            {% block exercise_rules %}
+             Здесь будут правила выполнения этого упражнения 
+            {% endblock exercise_rules %}
+          </div>
+         
+        </section>
+        
+        </div> 
+      {% endblock exercise_definition %}
+      
+ {% endblock exercise_about_zone %}     
+      
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {%  comment %}
+       
+     
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    
+    <script src="{STATIC_URL}google-code-prettify/prettify.js"></script>
+    <script src="{STATIC_URL}bootstrap-transition.js"></script>
+    <script src="{STATIC_URL}bootstrap-alert.js"></script>
+    <script src="{STATIC_URL}bootstrap-modal.js"></script>
+    <script src="{{STATIC_URL}}bootstrap-dropdown.js"></script>
+    <script src="{STATIC_URL}bootstrap-scrollspy.js"></script>
+    <script src="{STATIC_URL}bootstrap-tooltip.js"></script>
+    <script src="{STATIC_URL}bootstrap-popover.js"></script>
+    <script src="{STATIC_URL}bootstrap-button.js"></script>
+    <script src="{STATIC_URL}bootstrap-collapse.js"></script>
+    <script src="{STATIC_URL}bootstrap-carousel.js"></script>
+    <script src="{STATIC_URL}bootstrap-typeahead.js"></script>
+    <script src="{STATIC_URL}bootstrap-affix.js"></script>
+    <script src="{STATIC_URL}application.js"></script>
+    {% endcomment %} 
+
+{% block exercise %}
+  
+{% endblock exercise %}
+
+
+  
+
+</body></html>
