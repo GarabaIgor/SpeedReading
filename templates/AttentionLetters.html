@@ -17,9 +17,9 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Буквы</h3>
   </div>
-  <div class="modal-body">
-  	<p>Найдено букв: <span id="resultTime"><strong>{minResult}:{secResult}</span></strong></p>
-  	<div id ="resultInf">
+  <div class="modal-body" style="padding-top:0">
+  	<p><h4>Найдено букв:</h4></p>
+  	<div id ="resultInf" >
     {% if letters_to_find|length == 1 %}
     	<p>Букв {{letters_to_find.0}} :  {letter1_count} из {letter1_count_orig}</p>
     {% endif %}
@@ -30,6 +30,10 @@
     	<p>Ошибок: {mistake_count}</p>
     	
     </div>
+  </div>
+<div class="modal-footer">
+    <button id="finish_ex" class="btn" data-dismiss="modal" aria-hidden="true">Завершить упражнение</button>
+    <a  href="{%url SpeedReading.exercises.views.attention_letters %}" class="btn btn-primary">Начать заново</a>
   </div>
 
 </div>

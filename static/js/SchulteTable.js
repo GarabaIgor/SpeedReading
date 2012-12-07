@@ -33,14 +33,14 @@
 				if(nextInd == 2)
 				{
 				clearInterval(timerId);
-				$.ajax(
-					{
-						url: "http://127.0.0.1:8000/get_schulte_table_inf/",
-      				    type: "POST",
-       				    data: {"ex_name":"SchulteTable","min":min,"sec":sec},
-        				dataType:"json",
+				// $.ajax(
+				// 	{
+				// 		url: "http://127.0.0.1:8000/get_schulte_table_inf/",
+    //   				    type: "POST",
+    //    				    data: {"ex_name":"SchulteTable","min":min,"sec":sec},
+    //     				dataType:"json",
 
-					});
+				// 	});
 				template = $.trim($("#resultTime").html());
 				var temp = template.replace(/{minResult}/ig,min)
 								   .replace(/{secResult}/ig,sec);
@@ -64,6 +64,23 @@
 				$("#min").text(++min);
 			}
 			},1000);
+		//Отправляю по кнопке завершить упражнение
+		$("#finish_ex").on("click",function(){
+
+				$.ajax(
+					{
+						url: "http://127.0.0.1:8000/get_schulte_table_inf/",
+      				    type: "POST",
+       				    data: {"ex_name":"SchulteTable","min":min,"sec":sec},
+        				dataType:"json",
+
+					});
+				// template = $.trim($("#resultTime").html());
+				// var temp = template.replace(/{minResult}/ig,min)
+				// 				   .replace(/{secResult}/ig,sec);
+				
+				// $("#resultTime").replaceWith(temp); 
+		});
 		
 	});
 

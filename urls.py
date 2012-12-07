@@ -18,7 +18,11 @@ urlpatterns = patterns('',
     (r'^vertical_about/$',views.vertical_about),
     (r'^vertical/$',views.vertical),
     (r'^attention_letters/$',views.attention_letters),
+    (r'^get_attention_letters_result/$',views.get_attention_letters_result),
     (r'^attention_letters_json/$',views.attention_letters_json),
+    (r'^double_images/$',views.double_images),
+    (r'^double_images_about/$',views.double_images_about),
+        
     (r'^summ/$',views.summ),
     # Examples:
     # url(r'^$', 'SpeedReading.views.home', name='home'),

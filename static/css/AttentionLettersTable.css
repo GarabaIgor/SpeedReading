@@ -70,8 +70,11 @@ td
 
 .check_table
 {
+	text-align:center;
 	margin-top: 1em;
+	width: 800px;
 }
+
 
 .span9
 {

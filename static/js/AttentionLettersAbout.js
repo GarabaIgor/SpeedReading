@@ -125,4 +125,15 @@ $("body").on("click","#check_table_b",function(){
         $("#myModal").modal("show");
     });
 
+$("body").on("click","#finish_ex",function(){
+  
+  $.ajax(
+          {
+            url: "http://127.0.0.1:8000/get_attention_letters_result/",
+                  type: "POST",
+                  data: {"ex_name":"AttentionLetters","mistake_count":mistake_count},
+                dataType:"json",
+
+          });
+});
 });

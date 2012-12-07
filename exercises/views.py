@@ -27,10 +27,11 @@ def schulte_table_inf(request):
 			try:
 				min =  int(request.POST['min'])
 				sec =  int(request.POST['sec'])
-				ex_name = request.POST['ex_name']	
+				ex_name = request.POST['ex_name']
+				print sec	
 			except Exception,e:
 				print e
-		return render_to_response('thanks.html',{'data':request.raw_post_data},context_instance=RequestContext(request))
+		return HttpResponse()
 	
 
 def green_point(request):
@@ -98,7 +99,22 @@ def attention_letters_json(request):
 		print e
 	return HttpResponse(sj.dumps(page_data), mimetype="application/json")
 
+def get_attention_letters_result(request):
+	if request.is_ajax():
+		if request.method == 'POST':
+			try:
+				err_count =  int(request.POST['mistake_count'])
+				
+				ex_name = request.POST['ex_name']
+				print err_count, ex_name
+			except Exception,e:
+				print e
+	return  HttpResponse()
 
+def double_images_about(request):
+	return render_to_response("")
+def double_images(request):
+	return render_to_response("")
 
 def summ(request):
 	return render_to_response('Summ.html',context_instance=RequestContext(request))
