@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block additionalLinks %}
-
+<script src="{{STATIC_URL}}GreenPoint.js"></script>
 {% endblock additionalLinks %}
 
  
@@ -24,7 +24,7 @@
 
 
 <p align="right">
-          <a  class="btn  btn-primary" href="{%url SpeedReading.exercises.views.green_point %}">Начать упражнение »</a>
+          <a id="get_json"  class="btn  btn-primary" >Начать упражнение »</a>
           </p>
 {% endblock exercise_rules %}   
 

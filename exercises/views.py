@@ -37,10 +37,22 @@ def schulte_table_inf(request):
 	
 
 def green_point(request):
-	return render_to_response('GreenPoint.html',context_instance=RequestContext(request))
-
-def green_point_about(request):
 	return render_to_response('GreenPoint_about.html',context_instance=RequestContext(request))
+
+def green_point_html(request):
+	try:
+		if request.is_ajax():
+			if request.method == 'GET':
+				html_content = render_to_string('GreenPoint.html',context_instance=RequestContext(request))
+				html_content =  " ".join(html_content.split())
+				print html_content
+				# page_data = {'html_content':html_content}
+				# print page_data
+				    			    		  		
+	except Exception,e:
+		print e
+	# return HttpResponse(sj.dumps(page_data),mimetype="application/json")
+	return HttpResponse(html_content,mimetype="application/html")
 
 def get_green_point(request):
 	if request.is_ajax():

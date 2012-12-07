@@ -6,7 +6,7 @@ $(function() {
   		 
         $("#content_container").html(json.html_content);
         $("#content_container").css({"text-align":"center","padding-top":"2em"});
-        $(".navbar").after("<div class=\"top_left_corner\"><p class=\"timer\"><span id=\"min\">0</span>:<span id=\"sec\">0</span></p></div>");
+        $(".navbar").after("<div class=\"top_left_corner\"><a class=\"btn btn-info\"><i class=\"icon-refresh\" ></i> Начать заново</a><p class=\"timer\"><span id=\"min\">0</span>:<span id=\"sec\">0</span></p></div>");
   		
   		var sec = 0;
 	var min = 0;

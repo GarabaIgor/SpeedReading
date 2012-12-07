@@ -1,4 +1,7 @@
 jQuery(document).ready(function() {
+  $(document).bind("contextmenu",function(e){
+              return false;
+       }); 
 	var chosen_letters = "";
   var letter1_count = 0;
   var letter2_count = 0;
@@ -8,13 +11,13 @@ jQuery(document).ready(function() {
   var letter1_count_orig = 0;
   var letter2_count_orig = 0;
   // var letter3_count_orig = 0;
-  $("#sendLetters").on('click',function()
+  $("#getLetters").on('click',function()
   {
     chosen_letters = $("#list option:selected").val();
     console.log(chosen_letters.length);
   $.getJSON("http://127.0.0.1:8000/attention_letters_json/",{"chosen_letters":chosen_letters},function(json){
   		   $("head").append("<link href=\"/static/AttentionLettersTable.css\" rel=\"stylesheet\">");
-  		   $("head").append("<script type=\"text/javascript\" src=\"/static/AttentionLettersTable.js\"></script>");
+  		   // $("head").append("<script type=\"text/javascript\" src=\"/static/AttentionLettersTable.js\"></script>");
   		 
         // console.log(html);
         // console.log(typeof(html));
