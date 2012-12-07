@@ -9,8 +9,19 @@ jQuery(document).ready(function() {
 	timerId = setInterval(function() { 
 			if(min==10)
 			{
-				alert('Упражнение окончено');
+				// alert('Упражнение окончено');
+
+				$.ajax(
+					{
+						url: "http://127.0.0.1:8000/get_green_point/",
+      				    type: "POST",
+       				    data: {"ex_name":"GreenPoint","done":"true"},
+        				dataType:"json",
+
+					});
+				
 				clearInterval(timerId);
+				alert('Упражнение окончено');
 			}
 			if(sec != 60) 
 			{

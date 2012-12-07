@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block additionalLinks %}
-
+<script src="{{STATIC_URL}}DoubleImages.js"></script>
 {% endblock additionalLinks %}
 
  
@@ -15,7 +15,7 @@
 
 
 <p align="right">
-          <a  class="btn  btn-primary" href="{%url SpeedReading.exercises.views.double_images%}">Начать упражнение »</a>
+          <a id="double_images_start" class="btn  btn-primary">Начать упражнение »</a>
           </p>
 {% endblock exercise_rules %}   
 

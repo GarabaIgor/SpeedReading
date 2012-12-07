@@ -1,22 +1,6 @@
  $(function()
 	{
-// 		$('td').on('dblclick',function()
-// 		{
-// 			if(!$(this).attr("id"))
-// 			{
-// 				$(this).attr("id","selected2");	
-// 			}
-			
-// 		});
-// 		$('td').on('click',function()
-// 		{
-// 			if(!$(this).attr("id"))
-// 			{
-// 				$(this).attr("id","selected");
-// 			}
-// 			// console.log(typeof $(this).attr("id"))
-			
-// 		});
+
  $(document).bind("contextmenu",function(e){
               return false;
        }); 

@@ -6,6 +6,8 @@ from django.utils import simplejson as sj
 import random
 from django.views.decorators.csrf import csrf_protect
 from django.template.loader import render_to_string
+from django.conf import settings
+import os
 
 
 def base_exercise(request):
@@ -39,6 +41,16 @@ def green_point(request):
 
 def green_point_about(request):
 	return render_to_response('GreenPoint_about.html',context_instance=RequestContext(request))
+
+def get_green_point(request):
+	if request.is_ajax():
+		if request.method == 'POST':
+			try:
+				done = request.POST['done']
+				print done
+			except Exception,e:
+				print e
+	return HttpResponse()
 
 def vertical_about(request):
 	return render_to_response('VerticalAbout.html',context_instance=RequestContext(request))
@@ -111,10 +123,33 @@ def get_attention_letters_result(request):
 				print e
 	return  HttpResponse()
 
-def double_images_about(request):
-	return render_to_response("")
 def double_images(request):
-	return render_to_response("")
+	return render_to_response("DoubleImagesAbout.html",context_instance=RequestContext(request))
+
+def double_images_json(request):
+	try:
+		if request.is_ajax():
+			if request.method == 'GET':
+				img_files_list = []
+				path = "static/img/double_images"
+				# path = "/Users/igor/Desktop/SpeedReading/static/img/double_images"
+				for files in os.listdir(path):
+					if files.endswith(".jpeg"):
+						img_files_list.append(files)
+				img_src = "/static/double_images/" + random.choice(img_files_list)
+				# print img_src
+				# print img_files_list
+				html_content = render_to_string('DoubleImages.html',{'img_src':img_src},context_instance=RequestContext(request))
+				html_content =  " ".join(html_content.split())
+				print html_content
+				page_data = {'html_content':html_content}
+				
+				    			    		  		
+	except Exception,e:
+		print e
+	return HttpResponse(sj.dumps(page_data),mimetype="application/json")
+# def double_images(request):
+# 	return render_to_response("")
 
 def summ(request):
 	return render_to_response('Summ.html',context_instance=RequestContext(request))

@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     (r'^field_of_view_exercise_about/$',views.field_of_view_exercise_about),
     (r'^get_schulte_table_inf/$',views.schulte_table_inf),
     (r'^green_point/$',views.green_point),
+    (r'^get_green_point/$',views.get_green_point),
     (r'^green_point_about/$',views.green_point_about),
     (r'^storm_about/$',views.storm_about),
     (r'^storm/$',views.storm),
@@ -20,8 +21,9 @@ urlpatterns = patterns('',
     (r'^attention_letters/$',views.attention_letters),
     (r'^get_attention_letters_result/$',views.get_attention_letters_result),
     (r'^attention_letters_json/$',views.attention_letters_json),
+   
     (r'^double_images/$',views.double_images),
-    (r'^double_images_about/$',views.double_images_about),
+    (r'^double_images_json/$',views.double_images_json),
         
     (r'^summ/$',views.summ),
     # Examples:
