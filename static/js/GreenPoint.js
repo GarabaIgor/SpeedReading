@@ -6,8 +6,10 @@ jQuery(document).ready(function() {
 	console.log(h)
 	$("#circle").css("margin-left",w/2);
 	$("#circle").css("margin-top",h/2+10);
+	var timerId;
+	var updateFun = function(){
 	timerId = setInterval(function() { 
-			if(min==10)
+			if(min==5)
 			{
 				// alert('Упражнение окончено');
 
@@ -21,9 +23,10 @@ jQuery(document).ready(function() {
 					});
 				
 				clearInterval(timerId);
+				
 				alert('Упражнение окончено');
 			}
-			if(sec != 60) 
+			else if(sec != 60) 
 			{
 				$("#sec").text(++sec);
 			}
@@ -33,5 +36,15 @@ jQuery(document).ready(function() {
 				$("#sec").text(sec);
 				$("#min").text(++min);
 			}
-			},1000);
+			},10);
+}
+updateFun();
+	$("#restart_timer").on("click",function(){
+		clearInterval(timerId);
+				min = 0;
+				sec = 0;
+				$("#sec").text(sec);
+				$("#min").text(min);
+		updateFun();
+	});
 });

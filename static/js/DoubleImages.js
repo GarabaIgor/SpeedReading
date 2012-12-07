@@ -11,8 +11,9 @@ $(function() {
   		var sec = 0;
 	var min = 0;
 	timerId = setInterval(function() { 
-			if(min==5)
+			if(sec==5)
 			{
+				
 				clearInterval(timerId);
 				alert('Упражнение окончено');
 			}
