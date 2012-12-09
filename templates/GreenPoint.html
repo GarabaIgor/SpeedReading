@@ -1,4 +1,18 @@
-
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Зеленая точка</h3>
+  </div>
+  <div class="modal-body">
+  	<p>Время выполнения упражнения: <span id="resultTime"><strong>{minResult}:{secResult}</span></strong></p>
+    
+    
+  </div>
+  <div class="modal-footer">
+    <a id="finish_ex" href="{%url SpeedReading.exercises.views.home_page %}" class="btn" >Завершить упражнение</a>
+    <a id="restart_from_modal"  class="btn btn-primary">Начать заново</a>
+  </div>
+</div>
 
 <div id="circle" style="position:absolute;z-index:2">
 		

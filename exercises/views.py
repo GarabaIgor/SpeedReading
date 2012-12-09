@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response
-from django.http import HttpResponse,Http404
+from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.template import RequestContext
 from django.utils import simplejson as sj
 import random
@@ -9,31 +9,34 @@ from django.template.loader import render_to_string
 from django.conf import settings
 import os
 
+def home_page(request):
+	return render_to_response('Home_page.html',context_instance=RequestContext(request))
 
 def base_exercise(request):
 	return render_to_response('base.html',context_instance=RequestContext(request))
-def schulte_table(request):
-	table_values = range(1,26)
-	table_indexes = range(25)
-	random.shuffle(table_values)
+def schulte_table_html(request):
+	html_content = "empty"
+	if request.is_ajax():
+		table_values = range(1,26)
+		table_indexes = range(25)
+		random.shuffle(table_values)
+		html_content = render_to_string('SchulteTable.html',{'table':table_values,'index':table_indexes},context_instance=RequestContext(request))
+	return HttpResponse(html_content,mimetype="application/html")
 
-	return render_to_response('SchulteTable.html',{'table':table_values,'index':table_indexes},context_instance=RequestContext(request))
 def schulte_table_about(request):
 	return render_to_response('SchulteTable_about.html',context_instance=RequestContext(request))
 def field_of_view_exercise_about(request):
 	return render_to_response('base_field_of_view_exercise_about.html',context_instance=RequestContext(request))
 
-def schulte_table_inf(request):
+def schulte_table_result(request):
 	if request.is_ajax():
 		if request.method == 'POST':
 			try:
-				min =  int(request.POST['min'])
-				sec =  int(request.POST['sec'])
-				ex_name = request.POST['ex_name']
-				print sec	
+				print request.POST['ex_name'],request.POST['min'],request.POST['sec']
 			except Exception,e:
 				print e
 		return HttpResponse()
+
 	
 
 def green_point(request):
@@ -45,7 +48,7 @@ def green_point_html(request):
 			if request.method == 'GET':
 				html_content = render_to_string('GreenPoint.html',context_instance=RequestContext(request))
 				html_content =  " ".join(html_content.split())
-				print html_content
+				#print html_content
 				# page_data = {'html_content':html_content}
 				# print page_data
 				    			    		  		
@@ -54,12 +57,11 @@ def green_point_html(request):
 	# return HttpResponse(sj.dumps(page_data),mimetype="application/json")
 	return HttpResponse(html_content,mimetype="application/html")
 
-def get_green_point(request):
+def green_point_result(request):
 	if request.is_ajax():
 		if request.method == 'POST':
 			try:
-				done = request.POST['done']
-				print done
+				print request.POST['ex_name'],request.POST['done'],request.POST['min'],request.POST['sec']
 			except Exception,e:
 				print e
 	return HttpResponse()

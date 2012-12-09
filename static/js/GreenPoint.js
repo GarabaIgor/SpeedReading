@@ -1,5 +1,5 @@
 jQuery(document).ready(function() {
-		$("#get_json").on('click',function()
+		$("#get_content").on('click',function()
   {
     // alert("clicked!");
   $.get("http://127.0.0.1:8000/green_point_html/",{},function(html){
@@ -8,7 +8,7 @@ jQuery(document).ready(function() {
 
   		   $("#content_container").html(html);
   		
-  		var h = $("#green_point_text").height();
+  	var h = $("#green_point_text").height();
 	var w = $("#green_point_text").width();
 	var sec = 0;
 	var min = 0;
@@ -21,19 +21,23 @@ jQuery(document).ready(function() {
 			if(min==5)
 			{
 				// alert('Упражнение окончено');
-
+				//Посылаю результаты
 				$.ajax(
 					{
-						url: "http://127.0.0.1:8000/get_green_point/",
+						url: "http://127.0.0.1:8000/green_point_result/",
       				    type: "POST",
-       				    data: {"ex_name":"GreenPoint","done":"true"},
+       				    data: {"ex_name":"GreenPoint","done":"true","min":min,"sec":sec},
         				dataType:"json",
 
 					});
 				
 				clearInterval(timerId);
+				var template = $.trim($("#resultTime").html());
+				var temp = template.replace(/{minResult}/ig,min)
+								   .replace(/{secResult}/ig,sec);
 				
-				alert('Упражнение окончено');
+				$("#resultTime").replaceWith(temp); 
+				$("#myModal").modal('show');
 			}
 			else if(sec != 60) 
 			{
@@ -45,17 +49,23 @@ jQuery(document).ready(function() {
 				$("#sec").text(sec);
 				$("#min").text(++min);
 			}
-			},10);
+			},1000);
 }
 updateFun();
-	$("#restart").on("click",function(){
+	var resart_ex = function(){
 		clearInterval(timerId);
 				min = 0;
 				sec = 0;
 				$("#sec").text(sec);
 				$("#min").text(min);
 		updateFun();
+	}
+	$("#restart").on("click",resart_ex);
+	$("body").on("click","#restart_from_modal",function(){
+		resart_ex();
+		$("#myModal").modal('hide');
 	});
+	
 
   },'html');
 });

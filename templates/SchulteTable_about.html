@@ -2,7 +2,7 @@
 
 {% block additionalLinks %}
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}SchulteTable.css" />
-
+<script src="{{STATIC_URL}}SchulteTable.js"></script>
 <style type="text/css">
 	table {
 		width: 10cm;
@@ -13,7 +13,7 @@
 	}
 </style>
 {% endblock additionalLinks %}
-{% block exercise_zone %}
+
   
 
 {% block exercise_name %}
@@ -68,7 +68,7 @@
   </tr>
 </table>
 <p align="right">
-          <a  class="btn  btn-primary" href="{%url SpeedReading.exercises.views.schulte_table %}">Начать упражнение »</a>
+          <a id="get_content"  class="btn  btn-primary" >Начать упражнение »</a>
           </p>
 {% endblock exercise_rules %}
-{% endblock exercise_zone %}
+

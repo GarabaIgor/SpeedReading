@@ -6,14 +6,16 @@ from SpeedReading.exercises import views
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-	(r'^base/$',views.base_exercise),
-	(r'^schulte/$',views.schulte_table),
-	(r'^schulte_about/$',views.schulte_table_about),
+	# (r'^base/$',views.base_exercise),
+    (r'^home/$',views.home_page),
+	(r'^schulte/$',views.schulte_table_about),
+    (r'^schulte_table_html/$',views.schulte_table_html),
+	# (r'^schulte_about/$',views.schulte_table_about),
     (r'^field_of_view_exercise_about/$',views.field_of_view_exercise_about),
-    (r'^get_schulte_table_inf/$',views.schulte_table_inf),
+    (r'^get_schulte_table_result/$',views.schulte_table_result),
     (r'^green_point/$',views.green_point),
     (r'^green_point_html/$',views.green_point_html),
-
+    (r'^green_point_result/$',views.green_point_result),
     # (r'^green_point_about/$',views.green_point_about),
     (r'^storm_about/$',views.storm_about),
     (r'^storm/$',views.storm),
