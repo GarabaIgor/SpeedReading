@@ -11,9 +11,9 @@ import os
 
 def home_page(request):
 	return render_to_response('Home_page.html',context_instance=RequestContext(request))
-
 def base_exercise(request):
 	return render_to_response('base.html',context_instance=RequestContext(request))
+
 def schulte_table_html(request):
 	html_content = "empty"
 	if request.is_ajax():
@@ -22,12 +22,8 @@ def schulte_table_html(request):
 		random.shuffle(table_values)
 		html_content = render_to_string('SchulteTable.html',{'table':table_values,'index':table_indexes},context_instance=RequestContext(request))
 	return HttpResponse(html_content,mimetype="application/html")
-
 def schulte_table_about(request):
 	return render_to_response('SchulteTable_about.html',context_instance=RequestContext(request))
-def field_of_view_exercise_about(request):
-	return render_to_response('base_field_of_view_exercise_about.html',context_instance=RequestContext(request))
-
 def schulte_table_result(request):
 	if request.is_ajax():
 		if request.method == 'POST':
@@ -37,11 +33,15 @@ def schulte_table_result(request):
 				print e
 		return HttpResponse()
 
+def field_of_view_exercise_about(request):
+	return render_to_response('base_field_of_view_exercise_about.html',context_instance=RequestContext(request))
+
+
+
 	
 
 def green_point(request):
 	return render_to_response('GreenPoint_about.html',context_instance=RequestContext(request))
-
 def green_point_html(request):
 	try:
 		if request.is_ajax():
@@ -56,7 +56,6 @@ def green_point_html(request):
 		print e
 	# return HttpResponse(sj.dumps(page_data),mimetype="application/json")
 	return HttpResponse(html_content,mimetype="application/html")
-
 def green_point_result(request):
 	if request.is_ajax():
 		if request.method == 'POST':
@@ -78,14 +77,26 @@ def storm_about(request):
 def storm(request):
 	return render_to_response('Storm.html',context_instance=RequestContext(request))
 
+def attention_letters_html_from_modal(request):
+	letters = ['К','Е','Х','Н','В','А','С','И']
+	letter1 = random.choice(letters)
+	letter2 = random.choice(letters)
+	letters.remove(letter2)
+	letter3 = random.choice(letters)
+	html_content = render_to_string('AttentionLettersAboutFromModal.html',{'letter1':letter1,'letter2':letter2,'letter3':letter3},context_instance=RequestContext(request))
+	html_content =  " ".join(html_content.split())
+	print html_content
+	# return render_to_response('AttentionLettersAbout.html',{'letter1':letter1,'letter2':letter2,'letter3':letter3},context_instance=RequestContext(request))
+	return HttpResponse(html_content,mimetype="application/html")
 def attention_letters(request):
 	letters = ['К','Е','Х','Н','В','А','С','И']
 	letter1 = random.choice(letters)
 	letter2 = random.choice(letters)
 	letters.remove(letter2)
 	letter3 = random.choice(letters)
+	# html_content = render_to_string('AttentionLettersAbout.html',{'letter1':letter1,'letter2':letter2,'letter3':letter3},context_instance=RequestContext(request))
 	return render_to_response('AttentionLettersAbout.html',{'letter1':letter1,'letter2':letter2,'letter3':letter3},context_instance=RequestContext(request))
-
+	# return HttpResponse()
 def attention_letters_json(request):
 	page_data = {}
 	letters_to_search = " ";
@@ -129,10 +140,7 @@ def get_attention_letters_result(request):
 	if request.is_ajax():
 		if request.method == 'POST':
 			try:
-				err_count =  int(request.POST['mistake_count'])
-				
-				ex_name = request.POST['ex_name']
-				print err_count, ex_name
+				print request.POST['ex_name'],request.POST['mistake_count'],request.POST["min"],request.POST["sec"]
 			except Exception,e:
 				print e
 	return  HttpResponse()

@@ -24,7 +24,8 @@ urlpatterns = patterns('',
     (r'^attention_letters/$',views.attention_letters),
     (r'^get_attention_letters_result/$',views.get_attention_letters_result),
     (r'^attention_letters_json/$',views.attention_letters_json),
-   
+   # (r'^attention_letters_html/$',views.attention_letters_html),
+    (r'^attention_letters_html_from_modal/$',views.attention_letters_html_from_modal),
     (r'^double_images/$',views.double_images),
     (r'^double_images_json/$',views.double_images_json),
         

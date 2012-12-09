@@ -10,6 +10,10 @@ table
 	table-layout:fixed;
 
 	/*font-size: 6pt;*/
+	
+}
+body
+{
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -49,12 +53,13 @@ td
 	text-decoration: underline;
 	
 }
-/*.top_left_corner
+.top_left_corner
 {
 	float: left;
 	padding-top: 2em;
-	padding-left:1em;
-}*/
+	padding-left:2em;
+	
+}
 .page-content
 {
 	text-align: center;
