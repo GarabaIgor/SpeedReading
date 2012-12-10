@@ -1,0 +1,27 @@
+
+<form id="quest" action="" method="post">{% csrf_token %}
+	<ol>
+	<li><p>{{form.q1_field.label}}</p></li>
+	<p>{{form.q1_field}}</p>
+	<li><p>{{form.q2_field.label}}</p></li>
+	<p>{{form.q2_field}}</p>
+	<li><p>{{form.q3_field.label}}</p></li>
+	<p>{{form.q3_field}}</p>
+	<li><p>{{form.q4_field.label}}</p></li>
+	<p>{{form.q4_field}}</p>
+	<li><p>{{form.q5_field.label}}</p></li>
+	<p>{{form.q5_field}}</p>
+	<li><p>{{form.q6_field.label}}</p></li>
+	<p>{{form.q6_field}}</p>
+	<li><p>{{form.q7_field.label}}</p></li>
+	<p>{{form.q7_field}}</p>
+	<li><p>{{form.q8_field.label}}</p></li>
+	<p>{{form.q8_field}}</p>
+	<li><p>{{form.q9_field.label}}</p></li>
+	<p>{{form.q9_field}}</p>
+	<li><p>{{form.q10_field.label}}</p></li>
+	<p>{{form.q10_field}}</p>
+	</ol>
+	<input type="hidden" name="text_name" value={{text_name}}>
+    <p><input id="check_result"  class="btn btn-inverse" value="Закончить"  /></p>
+</form>

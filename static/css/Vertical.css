@@ -1,6 +1,21 @@
-
+.end_of_text
+{
+	margin-bottom: 2em
+}
+.top_left_corner
+{
+	float: left;
+	padding-top: 2em;
+	padding-left:2em;
+	
+	
+}
 .column {
-    width: 250px;
+    width: 300px;
     text-align: justify;
-
+    padding-top: 2em;
+    font-size: 12pt;
+    line-height: 19pt;
+    
 }​
+

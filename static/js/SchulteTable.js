@@ -63,7 +63,7 @@ jQuery(document).ready(function() {
   		   if($(".top_left_corner").length == 0)
   		   {
   		   		$(".navbar").after("<div class=\"top_left_corner\"><a id=\"restart\" class=\"btn btn-info\"><i class=\"icon-refresh\" ></i> Начать заново</a><p class=\"timer\"><span id=\"min\">0</span>:<span id=\"sec\">0</span></p></div>");
-  		   		console.log($(".top_left_corner").length);
+  		   		// console.log($(".top_left_corner").length);
   		   }
   		   else
   		   		{

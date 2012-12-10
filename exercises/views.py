@@ -7,6 +7,8 @@ import random
 from django.views.decorators.csrf import csrf_protect
 from django.template.loader import render_to_string
 from django.conf import settings
+from exercises.models import vertical
+from exercises.forms import *
 import os
 
 def home_page(request):
@@ -66,10 +68,60 @@ def green_point_result(request):
 	return HttpResponse()
 
 def vertical_about(request):
-	return render_to_response('VerticalAbout.html',context_instance=RequestContext(request))
+	# Получаю название всех текстов
+	texts = vertical.objects.all()
+	texts_names = [x.name for x in texts]
 
-def vertical(request):
-	return render_to_response('Vertical.html',context_instance=RequestContext(request))
+	return render_to_response('VerticalAbout.html',{"texts_names":texts_names},context_instance=RequestContext(request))
+# текст для чтения отправляю
+def vertical_html(request):
+	try:
+		# vertical_content = vertical.objects.filter(name="Абу-Симбел")[0]
+		# vertical_content = vertical_content.content
+		if request.is_ajax():
+			if request.method == 'GET':
+				text_name = request.GET.get("text_name")
+				vertical_content = vertical.objects.filter(name=text_name)[0]
+				vertical_content = vertical_content.content
+				html_content = render_to_string('Vertical.html',{"vertical_content":vertical_content},context_instance=RequestContext(request))
+				html_content =  " ".join(html_content.split())
+				#print html_content
+				# page_data = {'html_content':html_content}
+				# print page_data
+				    			    		  		
+	except Exception,e:
+		print e
+	# return HttpResponse(sj.dumps(page_data),mimetype="application/json")
+	return HttpResponse(html_content,mimetype="application/html")
+	# return render_to_response('Vertical.html',context_instance=RequestContext(request))
+def vertical_questionare_html(request):
+	text_name = ""
+	try:
+		if request.is_ajax():
+			if request.method == 'GET':
+				text_name = request.GET.get("text_name")
+				print text_name
+		v = verticalForm(text_name=text_name)
+		print v
+		# print v
+	except Exception,e:
+		print e	
+	return render_to_response('vertical_questionare.html',{"form":v,"text_name":text_name},context_instance=RequestContext(request))
+def vertical_questionare_result(request):
+	correct_count = 0
+	try:
+		if request.is_ajax():
+			if request.method == 'POST':
+				text_name = request.POST.get("text_name")
+				# print request.POST
+				vertical_obj = vertical.objects.filter(name=text_name)[0]
+				for x in range(1,11):
+					if(request.POST.get('q'+str(x)+'_field').lower() == vertical_obj.__dict__['answer'+str(x)].lower()):	
+						correct_count+=1
+				print correct_count
+	except Exception,e:
+		print e
+	return HttpResponse()
 
 def storm_about(request):
 	return render_to_response('StormAbout.html',context_instance=RequestContext(request))

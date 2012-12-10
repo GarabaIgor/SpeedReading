@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block additionalLinks %}
-
+<script src="{{STATIC_URL}}Vertical.js"></script>
+<link href="{{STATIC_URL}}Vertical.css" rel="stylesheet">
 {% endblock additionalLinks %}
 
  
@@ -10,17 +11,16 @@
 Чтение вертикальным движением глаз 
 {% block exercise_rules %}
 Правила выполнения упражнения чтения вертикальным движением глаз
-Вы можете выбрать наши тексты
-<select>
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
+Выберите текст
+<select id="texts_names">
+	{% for name in texts_names %}
+		<option>{{name}}</option>
+	{% endfor %}
+
 </select>
-Либо загрузить свой
+
 <p align="right">
-          <a  class="btn  btn-primary" href="{%url SpeedReading.exercises.views.vertical %}">Начать упражнение »</a>
+          <a id="get_content" class="btn  btn-primary" >Начать упражнение »</a>
           </p>
 {% endblock exercise_rules %}   
 

@@ -2,11 +2,12 @@ from django.conf.urls.defaults import patterns, include, url
 from SpeedReading.exercises import views
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns('',
 	# (r'^base/$',views.base_exercise),
+    (r'^admin/',include(admin.site.urls)),
     (r'^home/$',views.home_page),
 	(r'^schulte/$',views.schulte_table_about),
     (r'^schulte_table_html/$',views.schulte_table_html),
@@ -19,8 +20,10 @@ urlpatterns = patterns('',
     # (r'^green_point_about/$',views.green_point_about),
     (r'^storm_about/$',views.storm_about),
     (r'^storm/$',views.storm),
-    (r'^vertical_about/$',views.vertical_about),
-    (r'^vertical/$',views.vertical),
+    (r'^vertical/$',views.vertical_about),
+    (r'^vertical_html/$',views.vertical_html),
+    (r'^vertical_questionare_html/$',views.vertical_questionare_html),
+    (r'^vertical_questionare_result/$',views.vertical_questionare_result),
     (r'^attention_letters/$',views.attention_letters),
     (r'^get_attention_letters_result/$',views.get_attention_letters_result),
     (r'^attention_letters_json/$',views.attention_letters_json),
