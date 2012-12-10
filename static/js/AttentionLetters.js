@@ -6,7 +6,6 @@ jQuery(document).ready(function() {
 	var chosen_letters = "";
   var letter1_count = 0;
   var letter2_count = 0;
-  // var letter3_count = 0;
   var mistake_count = 0;
   var not_found_count = 0;
   var letter1_count_orig = 0;
@@ -31,15 +30,7 @@ jQuery(document).ready(function() {
       },1000);
 }
 
-  // var restart_ex = function(){
-  //   clearInterval(timerId);
-  //       min = 0;
-  //       sec = 0;
-  //       $("#sec").text(sec);
-  //       $("#min").text(min);
-  //   updateFun();
-  // }
-  // var letter3_count_orig = 0;
+ 
   var restart_ex = function(){
    
       clearInterval(timerId);
@@ -58,6 +49,7 @@ jQuery(document).ready(function() {
     },'html');
     
   }
+  
   $("body").on('click',"#get_content",function()
   {
     chosen_letters = $("#list option:selected").val();

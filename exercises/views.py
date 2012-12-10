@@ -148,30 +148,32 @@ def get_attention_letters_result(request):
 def double_images(request):
 	return render_to_response("DoubleImagesAbout.html",context_instance=RequestContext(request))
 
-def double_images_json(request):
+def double_images_html(request):
 	try:
 		if request.is_ajax():
 			if request.method == 'GET':
 				img_files_list = []
-				path = "static/img/double_images"
-				# path = "/Users/igor/Desktop/SpeedReading/static/img/double_images"
+				path = "static/img/double_images"				
 				for files in os.listdir(path):
 					if files.endswith(".jpeg"):
 						img_files_list.append(files)
-				img_src = "/static/double_images/" + random.choice(img_files_list)
-				# print img_src
-				# print img_files_list
+				img_src = "/static/double_images/" + random.choice(img_files_list)				
 				html_content = render_to_string('DoubleImages.html',{'img_src':img_src},context_instance=RequestContext(request))
 				html_content =  " ".join(html_content.split())
-				print html_content
-				page_data = {'html_content':html_content}
-				
-				    			    		  		
+				# print html_content												    			    		  		
 	except Exception,e:
 		print e
-	return HttpResponse(sj.dumps(page_data),mimetype="application/json")
+	return HttpResponse(html_content,mimetype="application/html")
 # def double_images(request):
 # 	return render_to_response("")
+def double_images_result(request):
+	try:
+		if request.is_ajax():
+			if request.method == 'POST':	
+				print request.POST['ex_name'],request.POST['spaceCount'],request.POST["min"],request.POST["sec"]
+	except Exception,e:
+		print e
+	return  HttpResponse()
 
 def summ(request):
 	return render_to_response('Summ.html',context_instance=RequestContext(request))
