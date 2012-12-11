@@ -45,8 +45,10 @@ td
 {
 	background-color: ff9595;
 }
-
-
+.page-content
+{
+	width: 876px;
+}
 .special_href
 {
 	font-size: 14;

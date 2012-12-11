@@ -12,9 +12,9 @@ jQuery(document).ready(function() {
 	var w = $("#green_point_text").width();
 	var sec = 0;
 	var min = 0;
-	console.log(h)
+	console.log(w,h)
 	$("#circle").css("margin-left",w/2);
-	$("#circle").css("margin-top",h/2+10);
+	$("#circle").css("margin-top",300);
 	var timerId;
 	var updateFun = function(){
 	timerId = setInterval(function() { 

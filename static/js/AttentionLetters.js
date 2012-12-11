@@ -63,7 +63,7 @@ jQuery(document).ready(function() {
   {
     $('body').on("mousedown","td",function(event)
      {
-          console.log("clicked!");
+          // console.log("clicked!");
       if(chosen_letters.length == 1)
       {
         if (event.which == 1) {
@@ -100,7 +100,7 @@ jQuery(document).ready(function() {
      
 });
     chosen_letters = $("#list option:selected").val();
-     console.log(chosen_letters);
+     // console.log(chosen_letters);
   $.getJSON("http://127.0.0.1:8000/attention_letters_json/",{"chosen_letters":chosen_letters},function(json){
   		   
   		    $(".navbar").after("<div class=\"top_left_corner\"><a id=\"restart\" class=\"btn btn-info\"><i class=\"icon-refresh\" ></i> Начать заново</a><p class=\"timer\"><span id=\"min\">0</span>:<span id=\"sec\">0</span></p></div>");
