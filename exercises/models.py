@@ -27,3 +27,15 @@ class vertical(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+class simple_words(models.Model):
+	word = models.CharField(max_length=30)
+
+	def __unicode__(self):
+		return self.word
+
+class complicated_words(models.Model):
+	word = models.CharField(max_length=30)
+
+	def __unicode__(self):
+		return self.word

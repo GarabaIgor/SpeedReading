@@ -1,0 +1,43 @@
+<div style="text-align:center" id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Память</h3>
+  </div>
+  <div class="modal-body">
+  	<p id="result_count">Правильных ответов: {ans_count} из 10</p>
+    
+    
+  </div>
+  <div class="modal-footer">
+    <a id="finish_ex" href="{%url SpeedReading.exercises.views.home_page %}" class="btn" >Завершить упражнение</a>
+    <a id="restart_from_modal"  class="btn btn-primary">Начать заново</a>
+  </div>
+</div>
+
+		
+<table id="words_table">
+	{% for val in all_words %}
+
+	{% if forloop.first %}
+			<tr><td>{{val}}</td>
+	{%else%} 
+	{% if forloop.last%}
+		<td>{{val}}</td></tr>
+	{%else%}
+	{% if forloop.counter|divisibleby:"5"%}
+	<td>{{val}}</td></tr><tr>
+	{% else %}
+	<td>{{val}}</td>
+		
+	{% endif %}
+	{% endif %} 
+	{% endif %} 
+	
+	
+	
+	
+	
+		
+	{% endfor %}
+</table>
+

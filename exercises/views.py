@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from django.shortcuts import render_to_response
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.template import RequestContext
@@ -7,7 +8,7 @@ import random
 from django.views.decorators.csrf import csrf_protect
 from django.template.loader import render_to_string
 from django.conf import settings
-from exercises.models import vertical
+from exercises.models import *
 from exercises.forms import *
 import os
 
@@ -121,9 +122,11 @@ def vertical_questionare_result(request):
 		if request.is_ajax():
 			sec = 1.0
 			if request.method == 'POST':
-				text_name = request.POST.get("text_name")
 				# print request.POST
+				text_name = request.POST.get("text_name")
+			    
 				vertical_obj = vertical.objects.filter(name=text_name)[0]
+				# print type(vertical_obj.__dict__['answer10'])
 				for x in range(1,11):
 					if(request.POST.get('q%d_field' % x).lower() == vertical_obj.__dict__['answer%d' % x].lower()):	
 						correct_count+=1
@@ -250,6 +253,57 @@ def double_images_result(request):
 	except Exception,e:
 		print e
 	return  HttpResponse()
+
+all_words = []
+def ram_html(request):
+	html_content = ""
+	try:
+		# vertical_content = vertical.objects.filter(name="Абу-Симбел")[0]
+		# vertical_content = vertical_content.content
+		# if request.is_ajax():
+		if request.method == 'GET':
+			# text_name = request.GET.get("text_name")
+			s_w = simple_words.objects.raw("select exercises_simple_words. * from (select id from exercises_simple_words order by rand() LIMIT 8) as ids join exercises_simple_words ON exercises_simple_words.id = ids.id")
+			s_w_list = [x.word.lower() for x in s_w]
+			c_w = complicated_words.objects.raw("select exercises_complicated_words. * from (select id from exercises_complicated_words order by rand() LIMIT 2) as ids join exercises_complicated_words ON exercises_complicated_words.id = ids.id")
+			c_w_list = [x.word.lower() for x in c_w]
+			global all_words
+			all_words = s_w_list + c_w_list
+			all_words_sh = all_words[:]
+			all_words_sh += 15*[" "]
+			random.shuffle(all_words_sh)
+			random.shuffle(all_words_sh)
+			html_content = render_to_string('Ram.html',{"all_words":all_words_sh},context_instance=RequestContext(request))
+			html_content =  " ".join(html_content.split())
+			#print html_content
+			# page_data = {'html_content':html_content}
+			# print page_data
+			print html_content    			    		  		
+	except Exception,e:
+		print e
+	# return HttpResponse(sj.dumps(page_data),mimetype="application/json")
+	return HttpResponse(html_content,mimetype="application/html")
+def ram_about(request):
+	return render_to_response("Ram_about.html",context_instance=RequestContext(request))	
+def ram_check_result(request):
+	try:
+		correct_count = 0
+		if request.method == 'POST':
+			words = request.POST.get("words")
+			print type(words)
+			print type(all_words[0])
+			
+			
+			for aw in all_words:
+				print aw
+				if aw in words:
+					correct_count +=1;
+			
+			print correct_count			
+	except Exception,e:
+		print e
+	return HttpResponse(correct_count,mimetype="application/text")
+
 
 def summ(request):
 	return render_to_response('Summ.html',context_instance=RequestContext(request))
