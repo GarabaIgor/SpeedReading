@@ -14,8 +14,9 @@ jQuery(document).ready(function() {
   var min = 0;
 
   //Тикающий таймер
-  var updateFun = function(){
-  timerId = setInterval(function() { 
+  var updateFun = function()
+  {
+   timerId = setInterval(function() { 
       
      if(sec != 60) 
       {
@@ -28,34 +29,80 @@ jQuery(document).ready(function() {
         $("#min").text(++min);
       }
       },1000);
-}
+  }
 
  
-  var restart_ex = function(){
-   
+  var restart_ex = function()
+  {
+      chosen_letters = "";
+      letter1_count = 0;
+      letter2_count = 0;
+      mistake_count = 0;
+      not_found_count = 0;
+      letter1_count_orig = 0;
+      letter2_count_orig = 0;
       clearInterval(timerId);
         min = 0;
         sec = 0;
         $("#sec").text(sec);
         $("#min").text(min);
     // updateFun();
-      $.get("http://127.0.0.1:8000/attention_letters_html_from_modal/",{},function(html){
-        $("head").append("<link href=\"/static/base.css\" rel=\"stylesheet\">");
+       $.get("http://127.0.0.1:8000/attention_letters_html_from_modal/",{},function(html)
+       {
+       
         $(".top_left_corner").remove();
         $("#content_container").html(html);
         //Who knows why?
         $(".page-content").css("width","876");
        // console.log(html);
-    },'html');
+       },'html');
     
   }
   
   $("body").on('click',"#get_content",function()
   {
+    $('body').on("mousedown","td",function(event)
+     {
+          console.log("clicked!");
+      if(chosen_letters.length == 1)
+      {
+        if (event.which == 1) {
+              
+                if(!$(this).attr("id"))
+                {
+                  $(this).attr("id","selected");
+                letter1_count++;
+              }
+                  
+      }
+      }
+      if(chosen_letters.length == 2)
+      {
+        if (event.which == 1) {
+              
+                if(!$(this).attr("id"))
+                {
+                  $(this).attr("id","selected");
+                letter1_count++;
+              }
+                  
+      }
+        if(event.which == 3)
+        {
+              if(!$(this).attr("id"))
+              {
+                $(this).attr("id","selected2");
+              letter2_count++;
+            }
+          }
+                
+      }
+     
+});
     chosen_letters = $("#list option:selected").val();
-    // console.log(chosen_letters.length);
+     console.log(chosen_letters);
   $.getJSON("http://127.0.0.1:8000/attention_letters_json/",{"chosen_letters":chosen_letters},function(json){
-  		   $("head").append("<link href=\"/static/AttentionLettersTable.css\" rel=\"stylesheet\">");
+  		   
   		    $(".navbar").after("<div class=\"top_left_corner\"><a id=\"restart\" class=\"btn btn-info\"><i class=\"icon-refresh\" ></i> Начать заново</a><p class=\"timer\"><span id=\"min\">0</span>:<span id=\"sec\">0</span></p></div>");
 
        letter1_count_orig = json.letter1_count;
@@ -64,7 +111,14 @@ jQuery(document).ready(function() {
   		$("#content_container").html(json.html_content);
       updateFun();
 
-      $("body").on("click","#restart",restart_ex);
+      
+  		
+  },'json');
+          
+   
+}); 
+
+  $("body").on("click","#restart",restart_ex);
       //Получить стартовую страницу упражнения
   $("body").on("click","#restart_from_modal",function(){
     // resart_ex();
@@ -75,52 +129,10 @@ jQuery(document).ready(function() {
   },350);
     
   });
-  		
-  },'json');
-          
-   
-}); 
 
-// Если одна буква
 
-$('body').on("mousedown","td",function(event) {
-	if(chosen_letters.length == 1)
-	{
-		if (event.which == 1) {
-       	 	
-	        	if(!$(this).attr("id"))
-            {
-	            $(this).attr("id","selected");
-            letter1_count++;
-          }
-	            
-	}
-	}
-	if(chosen_letters.length == 2)
-	{
-		if (event.which == 1) {
-       	 	
-	        	if(!$(this).attr("id"))
-            {
-	            $(this).attr("id","selected");
-            letter1_count++;
-          }
-	            
-	}
-		if(event.which == 3)
-		{
-        	if(!$(this).attr("id"))
-          {
-            $(this).attr("id","selected2");
-          letter2_count++;
-        }
-    	}
-            
-	}
-          
-        
-     
-});
+
+
 
 $("body").on("click","#check_table_b",function(){
       

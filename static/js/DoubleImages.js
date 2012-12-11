@@ -2,21 +2,14 @@ $(function() {
 	$(document).bind("contextmenu",function(e){
               return false;
        }); 
-	$("#get_content").on("click",function(){
-		$.get("http://127.0.0.1:8000/double_images_html/",{},function(html){
-  		   $("head").append("<link href=\"/static/DoubleImages.css\" rel=\"stylesheet\">");
-  		   // $("head").append("<script type=\"text/javascript\" src=\"/static/AttentionLettersTable.js\"></script>");
-  		 
-        $("#content_container").html(html);
-        $("#content_container").css({"text-align":"center","padding-top":"2em"});
-        $(".navbar").after("<div class=\"top_left_corner\"><a id=\"restart\" class=\"btn btn-info\"><i class=\"icon-refresh\" ></i> Начать заново</a><p class=\"timer\"><span id=\"min\">0</span>:<span id=\"sec\">0</span></p></div>");
-  		
-  		var spaceCount = 0;
+		var spaceCount = 0;
 	  	var sec = 0;
 		var min = 0;
-		var updateFun = function(){
+		var body = $("body");
+		var updateFun = function()
+		{
 			timerId = setInterval(function() { 
-					if(min==5)
+					if(sec==5)// if(min==5)
 					{
 						
 						
@@ -54,8 +47,8 @@ $(function() {
 					}
 					},1000);
 	};
-	updateFun();
-	var restart_ex = function(){
+
+		var restart_ex = function(){
 			clearInterval(timerId);
 			min = 0;
 			sec = 0;
@@ -72,25 +65,46 @@ $(function() {
 			updateFun();
 		}
 
-	$("#restart").on("click",restart_ex);
+		body.on("click","#restart",restart_ex);
 
-	$('body').keyup(function(e){
+	body.keyup(function(e)
+	{
    
-	   	if(e.keyCode == 32){
+	   	if(e.keyCode == 32)
+	   	{
 	   		spaceCount++;
 	       // console.log(spaceCount);
-   }
-});
+ 		}
+	});
 
-  	$("body").on("click","#restart_from_modal",function(){
+	body.on("click","#restart_from_modal",function()
+	{
     	$("#myModal").modal('hide');
       	setTimeout(function(){
    			 restart_ex();
   		},350);
     
-  });	
+  	});
 
-  },'html');
+	$("#get_content").on("click",function()
+	{
+		$.get("http://127.0.0.1:8000/double_images_html/",{},function(html){
+  		   $("head").append("<link href=\"/static/DoubleImages.css\" rel=\"stylesheet\">");
+  		   // $("head").append("<script type=\"text/javascript\" src=\"/static/AttentionLettersTable.js\"></script>");
+  		 
+        $("#content_container").html(html);
+        $("#content_container").css({"text-align":"center","padding-top":"2em"});
+        $(".navbar").after("<div class=\"top_left_corner\"><a id=\"restart\" class=\"btn btn-info\"><i class=\"icon-refresh\" ></i> Начать заново</a><p class=\"timer\"><span id=\"min\">0</span>:<span id=\"sec\">0</span></p></div>");
+  		
+  		
+		updateFun();
+	
+
+
+
+  		
+
+  		},'html');
 	})
 
 	

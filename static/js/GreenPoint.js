@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
 	var timerId;
 	var updateFun = function(){
 	timerId = setInterval(function() { 
-			if(min==5)
+			if(sec==5)// if(min==5)
 			{
 				// alert('Упражнение окончено');
 				//Посылаю результаты
