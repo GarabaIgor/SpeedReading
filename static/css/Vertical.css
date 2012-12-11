@@ -1,3 +1,16 @@
+input[type="text"]
+{
+	
+	width: 25em;
+	height: 2em;
+	
+	
+}
+form
+{
+	margin-top: 2.5em;
+}
+
 .end_of_text
 {
 	margin-bottom: 2em
@@ -7,7 +20,7 @@
 	float: left;
 	padding-top: 2em;
 	padding-left:2em;
-	
+	position: fixed;
 	
 }
 .column {

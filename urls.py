@@ -20,10 +20,13 @@ urlpatterns = patterns('',
     # (r'^green_point_about/$',views.green_point_about),
     (r'^storm_about/$',views.storm_about),
     (r'^storm/$',views.storm),
+
     (r'^vertical/$',views.vertical_about),
+    (r'^vertical_about_html/$',views.vertical_about_html),
     (r'^vertical_html/$',views.vertical_html),
     (r'^vertical_questionare_html/$',views.vertical_questionare_html),
     (r'^vertical_questionare_result/$',views.vertical_questionare_result),
+    
     (r'^attention_letters/$',views.attention_letters),
     (r'^get_attention_letters_result/$',views.get_attention_letters_result),
     (r'^attention_letters_json/$',views.attention_letters_json),

@@ -1,27 +1,30 @@
+<div style="text-align:center" id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Таблица Шульте</h3>
+  </div>
+  <div class="modal-body">
+  	<div id ="resultInf" >
+  	<p>Время выполнения упражнения: <span id="resultTime"><strong>{minResult}:{secResult}</span></strong></p>
+    <p>Скорость чтения <span id=""><strong>{speed} знаков в минуту</span></strong></p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a id="finish_ex" href="{%url SpeedReading.exercises.views.home_page %}" class="btn" >Завершить упражнение</a>
+    <a id="restart_from_modal"  class="btn btn-primary">Начать заново</a>
+  </div>
+</div>
 
-<form id="quest" action="" method="post">{% csrf_token %}
+<form  id="quest"  action="" method="post">{% csrf_token %}
+
 	<ol>
-	<li><p>{{form.q1_field.label}}</p></li>
-	<p>{{form.q1_field}}</p>
-	<li><p>{{form.q2_field.label}}</p></li>
-	<p>{{form.q2_field}}</p>
-	<li><p>{{form.q3_field.label}}</p></li>
-	<p>{{form.q3_field}}</p>
-	<li><p>{{form.q4_field.label}}</p></li>
-	<p>{{form.q4_field}}</p>
-	<li><p>{{form.q5_field.label}}</p></li>
-	<p>{{form.q5_field}}</p>
-	<li><p>{{form.q6_field.label}}</p></li>
-	<p>{{form.q6_field}}</p>
-	<li><p>{{form.q7_field.label}}</p></li>
-	<p>{{form.q7_field}}</p>
-	<li><p>{{form.q8_field.label}}</p></li>
-	<p>{{form.q8_field}}</p>
-	<li><p>{{form.q9_field.label}}</p></li>
-	<p>{{form.q9_field}}</p>
-	<li><p>{{form.q10_field.label}}</p></li>
-	<p>{{form.q10_field}}</p>
+		{% for f in form %}
+			<li><p>{{f.label}}<p></li>
+			<p>{{f}}</p>
+		{% endfor %}
+	
 	</ol>
 	<input type="hidden" name="text_name" value={{text_name}}>
-    <p><input id="check_result"  class="btn btn-inverse" value="Закончить"  /></p>
+	
+    <p style="text-align:right"> <a id="check_result" class="btn btn-danger"><i class="icon-ok"></i> Завершить</a></p>
 </form>

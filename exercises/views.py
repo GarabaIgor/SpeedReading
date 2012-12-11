@@ -66,8 +66,15 @@ def green_point_result(request):
 			except Exception,e:
 				print e
 	return HttpResponse()
+def vertical_about_html(request):
+	
+		if request.method == 'POST':
+			texts = vertical.objects.all()
+			texts_names = [x.name for x in texts]
+			html_content =  render_to_string('VerticalAbout_html.html',{"texts_names":texts_names},context_instance=RequestContext(request))
+			return HttpResponse(html_content,mimetype="application/html")
 
-def vertical_about(request):
+def vertical_about(request):	
 	# Получаю название всех текстов
 	texts = vertical.objects.all()
 	texts_names = [x.name for x in texts]
@@ -102,26 +109,43 @@ def vertical_questionare_html(request):
 				text_name = request.GET.get("text_name")
 				print text_name
 		v = verticalForm(text_name=text_name)
-		print v
+		# print v
 		# print v
 	except Exception,e:
 		print e	
 	return render_to_response('vertical_questionare.html',{"form":v,"text_name":text_name},context_instance=RequestContext(request))
 def vertical_questionare_result(request):
 	correct_count = 0
+	correct_inds = []
 	try:
 		if request.is_ajax():
+			sec = 1.0
 			if request.method == 'POST':
 				text_name = request.POST.get("text_name")
 				# print request.POST
 				vertical_obj = vertical.objects.filter(name=text_name)[0]
 				for x in range(1,11):
-					if(request.POST.get('q'+str(x)+'_field').lower() == vertical_obj.__dict__['answer'+str(x)].lower()):	
+					if(request.POST.get('q%d_field' % x).lower() == vertical_obj.__dict__['answer%d' % x].lower()):	
 						correct_count+=1
-				print correct_count
+						correct_inds.append(x)
+				if(correct_count != 0):
+					if(int(request.POST.get("sec")) != 0):
+						sec = int(request.POST.get("sec"))
+					minutes =  float(request.POST.get("min")) + sec / 60.0
+					char_in_minute = int(vertical_obj.char_count / minutes)
+					speed = int(char_in_minute * (correct_count/10.0))
+					# print minutes, vertical_obj.char_count,char_in_minute,speed
+					
+				else:
+					speed = 0
+				dic_to_json = {"speed":speed,"correct_inds":correct_inds}
+				# Results
+				print "vertical",request.POST.get('min'),sec,speed
+				return HttpResponse(sj.dumps(dic_to_json),mimetype="application/json")
 	except Exception,e:
 		print e
-	return HttpResponse()
+		
+		return HttpResponse()
 
 def storm_about(request):
 	return render_to_response('StormAbout.html',context_instance=RequestContext(request))
