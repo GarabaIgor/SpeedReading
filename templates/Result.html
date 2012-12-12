@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block additionalLinks %}
+<script src="{{STATIC_URL}}Result.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}AttentionLettersTable.css" /> -->
+{% endblock additionalLinks %}
+
+ 
+{% block exercise_name %}
+Результаты  
+{% endblock exercise_name %}  
+
+
+{% block exercise_rules %}
+<div id="results">  
+{% for key,value in results.items %}
+<p>
+	<strong>{{key}}. </strong> {{value}}
+	
+</p>
+{% endfor %}
+<p align="right">
+          <a id="reset_result"  class="btn  btn-primary" >Сбросить</a>
+          </p>
+          </div>
+{% endblock exercise_rules %}   
+

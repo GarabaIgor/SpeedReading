@@ -12,6 +12,9 @@ from exercises.models import *
 from exercises.forms import *
 import os
 
+results = {"Таблицы Шульте":"не выполнялось","Зеленая точка":"не выполнялось",
+		  "Чтение вертикальным движением глаз":"не выполнялось", "Буквы":"не выполнялось",
+		   "Двойственные образы":"не выполнялось","Оперативная память":"не выполнялось",}
 def home_page(request):
 	return render_to_response('Home_page.html',context_instance=RequestContext(request))
 def base_exercise(request):
@@ -31,7 +34,10 @@ def schulte_table_result(request):
 	if request.is_ajax():
 		if request.method == 'POST':
 			try:
-				print request.POST['ex_name'],request.POST['min'],request.POST['sec']
+				# pass
+				# print request.POST['ex_name'],request.POST['min'],request.POST['sec']
+				global results
+				results["Таблицы Шульте"]="Время выполнения - "+str(request.POST['min']) +":"+str(request.POST['sec'])
 			except Exception,e:
 				print e
 		return HttpResponse()
@@ -63,7 +69,9 @@ def green_point_result(request):
 	if request.is_ajax():
 		if request.method == 'POST':
 			try:
-				print request.POST['ex_name'],request.POST['done'],request.POST['min'],request.POST['sec']
+				# print request.POST['ex_name'],request.POST['done'],request.POST['min'],request.POST['sec']
+				global results
+				results["Зеленая точка"]="Время выполнения - "+str(request.POST['min']) +":"+str(request.POST['sec'])
 			except Exception,e:
 				print e
 	return HttpResponse()
@@ -143,7 +151,9 @@ def vertical_questionare_result(request):
 					speed = 0
 				dic_to_json = {"speed":speed,"correct_inds":correct_inds}
 				# Results
-				print "vertical",request.POST.get('min'),sec,speed
+				# print "vertical",request.POST.get('min'),sec,speed
+				global results
+				results["Чтение вертикальным движением глаз"]="Время выполнения - "+str(request.POST['min']) +":"+str(request.POST['sec'])+"; скорость чтения : " + str(speed) + " знаков/мин"
 				return HttpResponse(sj.dumps(dic_to_json),mimetype="application/json")
 	except Exception,e:
 		print e
@@ -219,7 +229,9 @@ def get_attention_letters_result(request):
 	if request.is_ajax():
 		if request.method == 'POST':
 			try:
-				print request.POST['ex_name'],request.POST['mistake_count'],request.POST["min"],request.POST["sec"]
+				# print request.POST['ex_name'],request.POST['mistake_count'],request.POST["min"],request.POST["sec"]
+				global results
+				results["Буквы"]="Время выполнения - "+str(request.POST['min']) +":"+str(request.POST['sec'])+"; количество ошибок - " + str(request.POST['mistake_count'])
 			except Exception,e:
 				print e
 	return  HttpResponse()
@@ -249,7 +261,9 @@ def double_images_result(request):
 	try:
 		if request.is_ajax():
 			if request.method == 'POST':	
-				print request.POST['ex_name'],request.POST['spaceCount'],request.POST["min"],request.POST["sec"]
+				# print request.POST['ex_name'],request.POST['spaceCount'],request.POST["min"],request.POST["sec"]
+				global results
+				results["Двойственные образы"]="Время выполнения - "+str(request.POST['min']) +":"+str(request.POST['sec'])+"; переключений внимания : " + str(request.POST['spaceCount'])
 	except Exception,e:
 		print e
 	return  HttpResponse()
@@ -290,8 +304,8 @@ def ram_check_result(request):
 		correct_count = 0
 		if request.method == 'POST':
 			words = request.POST.get("words")
-			print type(words)
-			print type(all_words[0])
+			# print type(words)
+			# print type(all_words[0])
 			
 			
 			for aw in all_words:
@@ -299,13 +313,32 @@ def ram_check_result(request):
 				if aw in words:
 					correct_count +=1;
 			
-			print correct_count			
+			# print correct_count	
+			global results
+			results["Оперативная память"]="Время выполнения - 0:5"+"; количество правильных слов : " + str(correct_count)		
 	except Exception,e:
 		print e
 	return HttpResponse(correct_count,mimetype="application/text")
 
+def result(request):
+	# if request.is_ajax():
+	# 	if request.method == 'POST':
+	# 		global results
+	# 		html_content = render_to_string("Result.html",{"results":results},context_instance=RequestContext(request))	
+	# 		return HttpResponse(html_content,mimetype="application/html")
+	# else:
+	global results
+	return render_to_response ("Result.html",{"results":results},context_instance=RequestContext(request))	
+def reset_result(request):
+	global results
+	results = {"Таблицы Шульте":"не выполнялось","Зеленая точка":"не выполнялось",
+		  "Чтение вертикальным движением глаз":"не выполнялось", "Буквы":"не выполнялось",
+		   "Двойственные образы":"не выполнялось","Оперативная память":"не выполнялось",}
+	html_content = render_to_string("Result_html.html",{"results":results},context_instance=RequestContext(request))
+	return HttpResponse(html_content,mimetype="application/html")
 
 def summ(request):
+	
 	return render_to_response('Summ.html',context_instance=RequestContext(request))
 
 
