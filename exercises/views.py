@@ -192,7 +192,7 @@ def attention_letters_json(request):
 	letters_to_find = []
 	letters = [u'К',u'Е',u'Х',u'Н',u'В',u'А',u'С',u'И']
 	w = 22
-	h = 10
+	h = 30
 	letters_array = [random.choice(letters) for x in range(w) for y in range(h)]	
 	try:
 		if request.method == 'GET':

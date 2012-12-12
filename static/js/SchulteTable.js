@@ -108,7 +108,7 @@ jQuery(document).ready(function() {
 						$this.css('background','white');
 					},250);
 				//nextInd == 26 && cur == 25
-				if(nextInd == 2)
+				if(nextInd == 26 && cur == 25)
 				{
 				clearInterval(timerId);
 				
