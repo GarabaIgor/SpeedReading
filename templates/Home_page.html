@@ -1,7 +1,141 @@
-{% extends 'base.html' %}
-{% block exercise_name %}
-	Домашняя страница
-{% endblock exercise_name %}
-{% block exercise_rules %}
-Приветствуем вас в тренажере по скрочтению 
-{% endblock exercise_rules %}
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Скорочтение</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="{{STATIC_URL}}bootstrap.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}base.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}bootstrap-responsive.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}docs.css" rel="stylesheet">
+    <script src="{{STATIC_URL}}jquery-1.8.2.js"></script>
+
+    
+    
+    <script src="{{STATIC_URL}}bootstrap.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}csrf.js"></script>
+    
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="{{STATIC_URL}}favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{STATIC_URL}}apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{STATIC_URL}}apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{STATIC_URL}}apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{{STATIC_URL}}apple-touch-icon-57-precomposed.png">
+
+    
+  </head><style type="text/css"></style>
+
+  <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+
+    <!-- Navbar
+    ================================================== -->
+ 
+      
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner" >
+        <div class="container" >
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          
+          <div class="nav-collapse " >
+            <ul class="nav">
+              <li class="">
+                <a href="{%url SpeedReading.exercises.views.home_page%}">Home</a>
+              </li>
+              <li class="dropdown">
+
+                <a href="#drop"
+                class="dropdown-toggle" data-toggle="dropdown" >Расширение поля зрения <b class="caret"></b></a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="{%url SpeedReading.exercises.views.schulte_table_about %}">Таблицы Шульте</a></li>
+                    <!-- <li class="divider"></li> -->
+                    <li><a href="{%url SpeedReading.exercises.views.green_point%}">Зеленая точка</a></li>
+
+                    
+                </ul>
+
+              </li>
+              <li class="dropdown">
+
+                <a href="#drop"
+                class="dropdown-toggle" data-toggle="dropdown" >Чтение<b class="caret"></b></a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="{%url SpeedReading.exercises.views.vertical_about%}">Вертикальное движение глаз</a></li>
+                    <!-- <li class="divider"></li> -->
+                    
+
+                    
+                </ul>
+
+              </li>      
+
+
+              </li>
+              <li class="dropdown">
+
+                <a href="#drop"
+                class="dropdown-toggle" data-toggle="dropdown" >Память <b class="caret"></b></a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="{%url SpeedReading.exercises.views.ram_about %}">Оперативная память</a></li>
+                    <!-- <li class="divider"></li> -->
+                    
+
+                    
+                </ul>
+
+              </li>
+              <li class="dropdown">
+
+                <a href="#drop"
+                class="dropdown-toggle" data-toggle="dropdown" >Внимание <b class="caret"></b></a>
+
+                <ul class="dropdown-menu">
+                    <li><a href="{%url SpeedReading.exercises.views.attention_letters %}">Тест Бурдона</a></li>
+                    <!-- <li class="divider"></li> -->
+                    <li><a href="{%url SpeedReading.exercises.views.double_images %}">Двойственные изображения</a></li>
+
+                    
+                </ul>
+
+              </li>
+              <li class="">
+                <a href="{%url SpeedReading.exercises.views.result %}">Результат</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+<div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit" style="margin-top:4em;" >
+        <h1>Добро пожаловать!</h1>
+        <p>Тренажер позволит улучшить вам навыки для более быстрого и продуктвного чтения. Для начала работы выберите упражнение в основном меню.</p>
+        
+      
+   
+
+      
+
+    </div>
+</body>
+</html>

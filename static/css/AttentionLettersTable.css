@@ -64,8 +64,9 @@ td
 }
 .page-content
 {
-	text-align: center;
+	text-align: justify;
 	float: left;
+
 
 }
 
@@ -80,6 +81,7 @@ td
 	text-align:center;
 	margin-top: 1em;
 	width: 800px;
+	margin-bottom: 2em
 }
 
 

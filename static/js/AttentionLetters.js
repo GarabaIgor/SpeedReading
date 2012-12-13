@@ -181,7 +181,7 @@ $("body").on("click","#check_table_b",function(){
                 dataType:"json",
 
           });
-
+        
         template = $.trim($("#resultInf").html());
         var temp = template.replace(/{letter1_count}/ig,letter1_count)
                    .replace(/{letter2_count}/ig,letter2_count)

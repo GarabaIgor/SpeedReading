@@ -6,17 +6,22 @@
 
  
 {% block exercise_name %}
-Буквы  
+Тест Бурдона  
 {% endblock exercise_name %}  
    
 {% block exercise_rules %}
-Правила выполнения упражнения буквы
+ Тест Бурдона - метод исследования состояния внимания на данный момент времени. Необходимо в предложенном тексте (в виде случайного набора букв) выделить одну определённую букву или две. Для выделения одной буквы - нажатие левой кнопки мыши, второй - правой кнопки мыши.
 <!-- <form action="{%url SpeedReading.exercises.views.attention_letters %}" method="get"> 
  -->
-<select name="letters"  id="list">
+ <p>Выберите букву(-ы) для поиска
+<select style="margin-left:2em;" name="letters"  id="list">
   <option name="letter1" value={{letter1}}>Поиск одной буквы - {{letter1}}</option>
   <option name="letter23" value={{letter2}}{{letter3}}>Поиск двух букв - {{letter2}}{{letter3}}</option>
 </select>
+
+</p>
+
+
 <p align="right">
           <button id="get_content" class="btn btn-primary" >Начать упражнение »</button>
           </p>

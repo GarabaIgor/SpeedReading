@@ -10,15 +10,16 @@
 {% endblock exercise_name %}  
  
 {% block exercise_rules %}
-
-Выберите текст для чтения
+Цель данного упражнения - формирование навыков чтения вертикальным движением глаз.
+Для проверки качества усвоения текста после прочтения необходимо ответить на 10 вопросов.
+<p>Выберите текст для чтения
 <select id="texts_names">
 	{% for name in texts_names %}
 		<option>{{name}}</option>
 	{% endfor %}
 
 </select>
-
+</p>
 <p align="right">
           <a id="get_content" class="btn  btn-primary" >Начать упражнение »</a>
           </p>
